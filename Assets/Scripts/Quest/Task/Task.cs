@@ -92,12 +92,12 @@ public class Task : ScriptableObject
 
     public bool IsComplete => State == TaskState.Complete;
 
-    //public Quest Owner { get; private set; }
+    public Quest Owner { get; private set; }
 
-    //public void Setup (Quest owner)
-    //{
-    //    Owner = owner;
-    //}
+    public void Setup(Quest owner)
+    {
+        Owner = owner;
+    }
 
     public void Start()
     {
@@ -119,7 +119,7 @@ public class Task : ScriptableObject
         CurrentSuccess = neededSuccessToComplete;
     }
 
-    public bool IsTarget(Category category, object target)
+    public bool IsTarget(string category, object target)
     {
         return (Category == category && targets.Any(x => x.IsEqual(target)) && 
             (!IsComplete || (IsComplete && canReceiveReportsDuringCompletion )));
