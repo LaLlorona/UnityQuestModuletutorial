@@ -74,21 +74,23 @@ public class Quest :ScriptableObject
 
     public string Description => description;
 
-    public bool IsCancelable => isCancelable && cancelConditions.All(x => x.IsPass(this));
+    public virtual bool IsCancelable => isCancelable && cancelConditions.All(x => x.IsPass(this));
 
     public bool IsAcceptable => acceptionConditions.All(x => x.IsPass(this));
 
-   
-
-
-
-
-
-
-
     public QuestState State { get; private set; }
 
-    public TaskGroup CurrentTaskGroup => taskGroups[currentTaskGroupIndex];
+    //public TaskGroup CurrentTaskGroup =>taskGroups[currentTaskGroupIndex];
+
+    public TaskGroup CurrentTaskGroup
+    {
+        get
+        {
+            //Debug.Log($"currentTaskGroupIndex is {currentTaskGroupIndex}");
+            //Debug.Log($"number of total tasks in task group is {taskGroups.Length}");
+            return taskGroups[currentTaskGroupIndex];
+        }
+    }
 
     public IReadOnlyList<TaskGroup> TaskGroups => taskGroups;
 
@@ -112,6 +114,10 @@ public class Quest :ScriptableObject
     public void OnRegister()
     {
         Debug.Assert(!IsRegistered, "This quest has already been registered");
+
+        Debug.Log("OnRegister in Quest.");
+
+        Debug.Log($"Code name of this quest is {codeName}");
 
 
         foreach (var taskGroup in taskGroups)
@@ -192,13 +198,21 @@ public class Quest :ScriptableObject
 
     }
 
-    public void Cancel()
+    public virtual void Cancel()
     {
         CheckIsRunning();
         Debug.Assert(IsCancelable, "ThisQuest cannot be canceled");
 
         State = QuestState.Cancel;
         onCanceled?.Invoke(this);
+    }
+
+    public Quest Clone ()
+    {
+        var clone = Instantiate(this);
+        clone.taskGroups = taskGroups.Select(x => new TaskGroup(x)).ToArray();
+
+        return clone;
     }
 
     private void OnSuccessChanged(Task task, int currentSuccess, int prevSuccess)
@@ -211,7 +225,7 @@ public class Quest :ScriptableObject
     {
         Debug.Assert(IsRegistered, "Quest is not registered");
         Debug.Assert(!IsCancel, "This questhas been canceled");
-        Debug.Assert(!IsCompletable, "This Quest has already been completed.");
+        Debug.Assert(!IsComplete, "This Quest has already been completed.");
     }
 
 

@@ -87,7 +87,9 @@ public class Task : ScriptableObject
 
     public void ReceiveReport(int successCount)
     {
+        Debug.Log($"In receive report, successCount is {successCount}");
         CurrentSuccess = action.Run(this, CurrentSuccess, successCount);
+        Debug.Log($"In receive report, successCount is {successCount} and CurrentSuccess is ${CurrentSuccess}");
     }
 
     public bool IsComplete => State == TaskState.Complete;
