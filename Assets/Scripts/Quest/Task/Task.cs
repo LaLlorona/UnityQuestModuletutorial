@@ -132,5 +132,7 @@ public class Task : ScriptableObject
             (!IsComplete || (IsComplete && canReceiveReportsDuringCompletion )));
     }
 
+    public bool ContainsTarget(object target) => targets.Any(x => x.IsEqual(target));
+
 
 }

@@ -94,7 +94,7 @@ public class QuestSystem : MonoBehaviour
         
         var newQuest = quest.Clone();
 
-        Debug.Log($"QuestSystem Register, and Cloned quest is {newQuest.CodeName}");
+   
 
 
 
@@ -113,9 +113,15 @@ public class QuestSystem : MonoBehaviour
             newQuest.onCompleted += OnQuestCompleted;
             newQuest.onCanceled += OnQuestCanceled;
 
+            Debug.Log($"active quest length before add is ${activeQuests.Count}");
+
             activeQuests.Add(newQuest);
+            Debug.Log($"active quest length after add is ${activeQuests.Count}");
 
             newQuest.OnRegister();
+
+            Debug.Log($"is on quest registered true? {onQuestRegistered == null}");
+           
             onQuestRegistered?.Invoke(newQuest);
 
         }

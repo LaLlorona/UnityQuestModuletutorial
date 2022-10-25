@@ -29,6 +29,12 @@ PrefabInstance:
       propertyPath: successCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4960252364490515792, guid: 547e1bb5b288bc14187ab3bdf87891f6,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a92973a0095deb498ab19849aadefa1,
+        type: 2}
     - target: {fileID: 7162997211635013435, guid: 547e1bb5b288bc14187ab3bdf87891f6,
         type: 3}
       propertyPath: m_RootOrder

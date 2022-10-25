@@ -17,4 +17,18 @@ public class QuestGiver : MonoBehaviour
             }
         }
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.F))
+    //    {
+    //        foreach (var quest in quests)
+    //        {
+    //            if (quest.IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
+    //            {
+    //                QuestSystem.Instance.Register(quest);
+    //            }
+    //        }
+    //    }
+    //}
 }

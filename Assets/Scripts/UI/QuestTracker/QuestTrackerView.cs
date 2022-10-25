@@ -17,7 +17,9 @@ public class QuestTrackerView : MonoBehaviour
 
         foreach (var quest in QuestSystem.Instance.ActiveQuests)
         {
+
             CreateQuestTracker(quest);
+
         }
 
     }
@@ -32,10 +34,11 @@ public class QuestTrackerView : MonoBehaviour
 
     private void CreateQuestTracker(Quest quest)
     {
+        Debug.Log($"CreateQuestTracker updated, and quest name is {quest.CodeName}");
         var categoryColor = categoryColors.FirstOrDefault(x => x.category == quest.Category);
         var color = categoryColor.category == null ? Color.white : categoryColor.color;
 
-        Instantiate(questTrackerPrefab, transform).Setup(quest, color);
+        Instantiate(questTrackerPrefab,transform).Setup(quest, color);
     }
 
     [System.Serializable]
