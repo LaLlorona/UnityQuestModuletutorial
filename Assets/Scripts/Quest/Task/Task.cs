@@ -56,8 +56,12 @@ public class Task : ScriptableObject
         get => currentSuccess;
         set
         {
+            Debug.Log($"Debug from Task.cs, current neededSuccessTocomplete is {neededSuccessToComplete}");
             int prevSuccess = currentSuccess;
+            int updateValue = Mathf.Clamp(value, 0, neededSuccessToComplete);
+    
             currentSuccess = Mathf.Clamp(value, 0, neededSuccessToComplete);
+            Debug.Log($"Debug from Task.cs, currentSucess after update is is {currentSuccess}, value is {value}");
             if (currentSuccess != prevSuccess)
             {
                 State = currentSuccess == neededSuccessToComplete ? TaskState.Complete : TaskState.Running;
@@ -87,9 +91,10 @@ public class Task : ScriptableObject
 
     public void ReceiveReport(int successCount)
     {
-        Debug.Log($"In receive report, successCount is {successCount}");
-        CurrentSuccess = action.Run(this, CurrentSuccess, successCount);
-        Debug.Log($"In receive report, successCount is {successCount} and CurrentSuccess is ${CurrentSuccess}");
+        Debug.Log($"In receive report of Task.cs, successCount is {successCount}");
+        int updateValue = action.Run(this, CurrentSuccess, successCount);
+        CurrentSuccess = updateValue;
+        Debug.Log($"In receive report of Task.cs, successCount is {successCount} and CurrentSuccess is ${CurrentSuccess}");
     }
 
     public bool IsComplete => State == TaskState.Complete;

@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93bf3ff0885ed444fbc56a941a57eccf, type: 3}
-  m_Name: QuestDatabase
+  m_Script: {fileID: 11500000, guid: 74d8cc730ef2b3d4786186b153b1a314, type: 3}
+  m_Name: Target_SecondKey
   m_EditorClassIdentifier: 
-  quests:
-  - {fileID: 11400000, guid: d3d90c6c822e411408d27fa2d4c5ce70, type: 2}
+  value: SecondKey

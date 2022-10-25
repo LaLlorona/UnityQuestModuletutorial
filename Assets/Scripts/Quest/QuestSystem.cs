@@ -44,6 +44,7 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
+
     private List<Quest> activeQuests = new List<Quest>();
     private List<Quest> completedQuests = new List<Quest>();
 
@@ -67,19 +68,19 @@ public class QuestSystem : MonoBehaviour
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
         
-        if (!Load())
-        {
-            foreach (var achievement in achievementDatabase.Quests)
-            {
-                Register(achievement);
-            }
-        }
+        //if (!Load())
+        //{
+        //    foreach (var achievement in achievementDatabase.Quests)
+        //    {
+        //        Register(achievement);
+        //    }
+        //}
     }
 
     private void OnApplicationQuit()
     {
         isApplicationQuitting = true;
-        Save();
+       
     }
 
 
