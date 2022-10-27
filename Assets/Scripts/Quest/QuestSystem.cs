@@ -46,7 +46,7 @@ public class QuestSystem : MonoBehaviour
 
 
     private List<Quest> activeQuests = new List<Quest>();
-    private List<Quest> completedQuests = new List<Quest>();
+    public List<Quest> completedQuests = new List<Quest>();
 
     private List<Quest> activeAchievements = new List<Quest>();
     private List<Quest> completedAchievements = new List<Quest>();
@@ -67,14 +67,14 @@ public class QuestSystem : MonoBehaviour
         questDatabase = Resources.Load<QuestDatabase>("QuestDatabase");
         achievementDatabase = Resources.Load<QuestDatabase>("AchievementDatabase");
 
-        
-        //if (!Load())
-        //{
-        //    foreach (var achievement in achievementDatabase.Quests)
-        //    {
-        //        Register(achievement);
-        //    }
-        //}
+
+        if (!Load())
+        {
+            //foreach (var achievement in achievementDatabase.Quests)
+            //{
+            //    Register(achievement);
+            //}
+        }
     }
 
     private void OnApplicationQuit()
@@ -149,13 +149,24 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
+    public void CompleteWaitingQuests()
+    {
+        foreach (var quest in activeQuests.ToList())
+        {
+            if (quest.IsCompletable)
+            {
+                quest.Complete();
+            }
+        }
+    }
+
     public bool ContainsInAcitveQuests(Quest quest) => activeQuests.Any(x => x.CodeName == quest.CodeName);
     public bool ContainsInCompleteQuests(Quest quest) => completedQuests.Any(x => x.CodeName == quest.CodeName);
     public bool ContainsInAcitveAchievements(Quest quest) => activeAchievements.Any(x => x.CodeName == quest.CodeName);
 
     public bool ContainsInCompletedAchievements(Quest quest) => completedAchievements.Any(x => x.CodeName == quest.CodeName);
 
-    private void Save()
+    public void Save()
     {
         var root = new JObject();
         root.Add(kActiveQuestsSavePath, CreateSaveDatas(activeQuests));
@@ -168,7 +179,7 @@ public class QuestSystem : MonoBehaviour
 
     }
 
-    private bool Load()
+    public bool Load()
     {
         if (PlayerPrefs.HasKey(kSaveRootPath))
         {

@@ -8,8 +8,10 @@ public class EndCheckpoint : MonoBehaviour
     {
         if (other.GetComponent<Controller>() == null)
             return;
-        
-        
+
+        QuestSystem.Instance.CompleteWaitingQuests();
+        QuestSystem.Instance.Save();
+
         GameSystem.Instance.StopTimer();
         GameSystem.Instance.FinishRun();
         Destroy(gameObject);

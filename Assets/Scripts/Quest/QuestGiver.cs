@@ -9,8 +9,15 @@ public class QuestGiver : MonoBehaviour
 
     private void Start()
     {
+        print($"length of completed quest is {QuestSystem.Instance.completedQuests.Count}");
+        foreach (var quest in QuestSystem.Instance.completedQuests)
+        {
+            print(quest.CodeName);
+        }
+    
         foreach (var quest in quests)
         {
+            
             if (quest.IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
             {
                 QuestSystem.Instance.Register(quest);
