@@ -65,6 +65,16 @@ public class TaskGroup
                 task.ReceiveReport(successCount);
             }
         }
+
+        foreach(var task in tasks)
+        {
+            if (!task.IsComplete)
+            {
+                return;
+            }
+
+        }
+        Complete();
     }
 
     public void Complete()

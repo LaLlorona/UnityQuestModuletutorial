@@ -70,10 +70,10 @@ public class QuestSystem : MonoBehaviour
 
         if (!Load())
         {
-            //foreach (var achievement in achievementDatabase.Quests)
-            //{
-            //    Register(achievement);
-            //}
+            foreach (var achievement in achievementDatabase.Quests)
+            {
+                Register(achievement);
+            }
         }
     }
 
@@ -187,8 +187,8 @@ public class QuestSystem : MonoBehaviour
 
             LoadSaveDatas(root[kActiveQuestsSavePath], questDatabase, LoadActiveQuest);
             LoadSaveDatas(root[kCompletedQuestsSavePath], questDatabase, LoadCompletedQuest);
-            LoadSaveDatas(root[kActiveAchievementsSavePath], questDatabase, LoadActiveQuest);
-            LoadSaveDatas(root[kCompletedAchievementsSavePath], questDatabase, LoadCompletedQuest);
+            LoadSaveDatas(root[kActiveAchievementsSavePath], achievementDatabase, LoadActiveQuest);
+            LoadSaveDatas(root[kCompletedAchievementsSavePath], achievementDatabase, LoadCompletedQuest);
             return true;
         }
         return false;

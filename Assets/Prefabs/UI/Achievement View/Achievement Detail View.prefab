@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 6790059351116613710}
   - component: {fileID: 2141541363243412750}
   - component: {fileID: 2080519913133064356}
+  - component: {fileID: 7249489781080523079}
   m_Layer: 5
   m_Name: Achievement Detail View
   m_TagString: Untagged
@@ -716,6 +717,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7249489781080523079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795384137947784950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502cf7081033b574f92550f8a281eac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementIcon: {fileID: 8967385837859026958}
+  titleText: {fileID: 5183714553338117979}
+  description: {fileID: 6383026128145408209}
+  rewardIcon: {fileID: 7984207392423635356}
+  rewardText: {fileID: 738245396927727064}
+  completionScreen: {fileID: 8277753609979040073}
 --- !u!1 &8277753609979040073
 GameObject:
   m_ObjectHideFlags: 0
